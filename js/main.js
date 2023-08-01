@@ -55,8 +55,8 @@ document.getElementById("container3D").appendChild(renderer.domElement);
 camera.position.z = objToRender === "dino" ? 25 : 500;
 
 //Add lights to the scene, so we can actually see the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
-topLight.position.set(500, 500, 500) //top-left-ish
+const topLight = new THREE.DirectionalLight(0xffffff, 5); // (color, intensity)
+topLight.position.set(500, 1000, 1000) //top-left-ish
 topLight.castShadow = true;
 scene.add(topLight);
 
@@ -74,7 +74,7 @@ function animate() {
   //Here we could add some code to update the scene, adding some automatic movement
 
   //Make the eye move
-  if (object && objToRender === "eye") {
+  if (object && objToRender === "eye_implant") {
     //I've played with the constants here until it looked good 
     object.rotation.y = -3 + mouseX / window.innerWidth * 3;
     object.rotation.x = -1.2 + mouseY * 2.5 / window.innerHeight;
