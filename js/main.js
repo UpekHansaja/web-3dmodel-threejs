@@ -21,7 +21,8 @@ let object;
 let controls;
 
 //Set which object to render
-let objToRender = 'eye_implant';
+let objToRender = 'eye';
+// let objToRender = 'eye_implant';
 
 //Instantiate a loader for the .gltf file
 const loader = new GLTFLoader();
@@ -56,7 +57,7 @@ camera.position.z = objToRender === "dino" ? 25 : 500;
 
 //Add lights to the scene, so we can actually see the 3D model
 const topLight = new THREE.DirectionalLight(0xffffff, 5); // (color, intensity)
-topLight.position.set(500, 1000, 1000) //top-left-ish
+topLight.position.set(500, 500, 500) //top-left-ish
 topLight.castShadow = true;
 scene.add(topLight);
 
@@ -74,7 +75,7 @@ function animate() {
   //Here we could add some code to update the scene, adding some automatic movement
 
   //Make the eye move
-  if (object && objToRender === "eye_implant") {
+  if (object && objToRender === "eye") {
     //I've played with the constants here until it looked good 
     object.rotation.y = -3 + mouseX / window.innerWidth * 3;
     object.rotation.x = -1.2 + mouseY * 2.5 / window.innerHeight;
