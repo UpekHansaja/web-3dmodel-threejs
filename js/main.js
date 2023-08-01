@@ -34,6 +34,8 @@ loader.load(
     //If the file is loaded, add it to the scene
     object = gltf.scene;
     scene.add(object);
+    // object.rotation.y = 15;
+    scene.rotation.y = 15;
   },
   function (xhr) {
     //While it is loading, log the progress
@@ -49,6 +51,8 @@ loader.load(
   }
 );
 
+
+
 //Instantiate a new renderer and set its size
 const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -58,17 +62,16 @@ document.getElementById("container3D").appendChild(renderer.domElement);
 
 //Set how far the camera will be from the 3D model
 // camera.position.z = objToRender === "dino" ? 25 : 500;
-camera.position.z = objToRender === "halo" ? 300 : 6000;
+camera.position.y = objToRender === "halo" ? 300 : 6000;
 if (objToRender == "halo") {
   camera.position.y = 6;
   // camera.position.x = 0.5;
   camera.position.z = 140;
-  // camera.rotation.x = 1;
 }
 
 //Add lights to the scene, so we can actually see the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 5); // (color, intensity)
-topLight.position.set(500, 500, 500) //top-left-ish
+const topLight = new THREE.DirectionalLight(0xffffff, 6.5); // (color, intensity)
+topLight.position.set(-500, 500, -500) //top-left-ish
 topLight.castShadow = true;
 scene.add(topLight);
 
@@ -89,7 +92,7 @@ function animate() {
   if (object && objToRender === "halo") {
     //I've played with the constants here until it looked good 
     object.rotation.y = -3 + mouseX / window.innerWidth * 3;
-    object.rotation.x = -1.2 + mouseY * 2.5 / window.innerHeight;
+    // object.rotation.x = -1.2 + mouseY * 2.5 / window.innerHeight;
   }
   renderer.render(scene, camera);
 }
@@ -103,8 +106,8 @@ window.addEventListener("resize", function () {
 
 //add mouse position listener, so we can make the eye move
 document.onmousemove = (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
+  mouseX = e.clientX / 8;
+  mouseY = e.clientY / 8;
 }
 
 //Start the 3D rendering
